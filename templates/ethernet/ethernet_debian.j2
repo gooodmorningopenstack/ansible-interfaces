@@ -2,8 +2,8 @@
 auto {{ item.device }}
 iface {{ item.device }} inet {% if item.bootproto is defined %}{{ item.bootproto }}{% elif item.cidr is defined or item.address is defined %}static{% else %}dhcp{% endif %}
 
-{% include '../ip/ipv4_debian.j2' %}
-{% include '../route/route_debian.j2' %}
+{% include 'templates/ip/ipv4_debian.j2' %}
+{% include 'templates/route/route_debian.j2' %}
 {% if item.hwaddress is defined %}
     hwaddress ether        {{ item.hwaddress }}
 {% endif %}
@@ -15,7 +15,7 @@ iface {{ item.device }} inet {% if item.bootproto is defined %}{{ item.bootproto
 
 {% if item.ipv6_address is defined %}
 iface {{ item.device }} inet6 static
-{% include '../ip/ipv6_debian.j2' %}
+{% include 'templates/ip/ipv6_debian.j2' %}
 {% if item.ipv6_options is defined %}
 {% for option in item.ipv6_options %}
     {{ option }}
