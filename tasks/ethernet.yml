@@ -1,0 +1,7 @@
+---
+- name: Create the network configuration file for ethernet interfaces
+  template:
+    src: "ethernet/ethernet_{{ ansible_os_family | lower() }}.j2"
+    dest: "{{ interfaces_config_path }}/ifcfg-{{ item.device }}"
+  loop: "{{ network_ether_interfaces }}"
+  register: ether_result
