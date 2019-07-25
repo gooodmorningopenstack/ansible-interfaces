@@ -1,0 +1,8 @@
+---
+network_pkgs:
+  - bridge-utils
+  - ifenslave
+  - iproute2
+  - python-selinux
+
+interfaces_config_path: "/etc/network/interfaces.d"

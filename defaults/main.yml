@@ -1,9 +1,63 @@
 ---
 network_pkgs: []
+
+#
+# network_ether_interfaces:
+#   - device: eth1
+#     bootproto: static
+#     cidr: 192.168.10.18/24
+#     gateway: auto
+#     route:
+#     - network: 192.168.200.0
+#       netmask: 255.255.255.0
+#       gateway: 192.168.10.1
+#     - network: 192.168.100.0
+#       netmask: 255.255.255.0
+#       gateway: 192.168.10.1
+#   - device: eth2
+#     bootproto: dhcp
 network_ether_interfaces: []
+
+#
+# network_bridge_interfaces:
+#   - device: br1
+#     type: bridge
+#     cidr: 192.168.10.10/24
+#     bridge_ports: [eth1, eth2]
+#     # Optional values
+#     bridge_ageing: 300
+#     bridge_bridgeprio: 32768
+#     bridge_fd: 15
+#     bridge_gcint: 4
+#     bridge_hello: 2
+#     bridge_maxage: 20
+#     bridge_maxwait: 0
+#     bridge_pathcost: "eth1 100"
+#     bridge_portprio: "eth1 128"
+#     bridge_stp: "on"
+#     bridge_waitport: "5 eth1 eth2"
 network_bridge_interfaces: []
+
+#
+# network_bond_interfaces:
+#   - device: bond0
+#     address: 192.168.10.128
+#     netmask: 255.255.255.0
+#     bond_mode: active-backup
+#     bond_slaves: [eth1, eth2]
+#     # Optional values
+#     bond_miimon: 100
+#     bond_lacp_rate: slow
+#     bond_xmit_hash_policy: layer3+4
 network_bond_interfaces: []
+
+#
+# network_vlan_interfaces:
+#   - device: eth1.2
+#     bootproto: static
+#     cidr: 192.168.20.18/24
 network_vlan_interfaces: []
+
 network_check_packages: true
 network_allow_service_restart: true
 network_modprobe_persist: true
