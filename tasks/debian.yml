@@ -1,21 +1,24 @@
 ---
-- name: Install the required packages in Debian derivatives
+- name: "install debian required packages"
   apt:
-    name: "{{ item }}"
-    state: installed
-  with_items: "{{ network_pkgs }}"
+    name: "{{ network_pkgs }}"
+    state: present
+    update_cache: yes
   environment: "{{ env }}"
   when: network_check_packages
 
-- name: Make sure the include line is there in interfaces file
+- name: "enable interfaces.d sourcing"
   lineinfile:
-    regexp: '^source\ {{ net_path | regex_escape() }}/\*'
-    line: "source {{ net_path }}/*"
-    dest: /etc/network/interfaces
+    regexp: '^source\ {{ interfaces_config_path | regex_escape() }}/\*'
+    line: "source {{ interfaces_config_path }}/*"
+    dest: "/etc/network/interfaces"
     state: present
     insertafter: EOF
 
-- name: Create the directory for interface cfg files
+- name: "ensure that etc/interfaces.d exists"
   file:
-    path: "{{ net_path }}"
+    path: "{{ interfaces_config_path }}"
     state: directory
+    owner: root
+    group: root
+    mode: 0755

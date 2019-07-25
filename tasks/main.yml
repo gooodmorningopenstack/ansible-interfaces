@@ -28,8 +28,3 @@
   when:
     - network_vlan_interfaces and network_vlan_interfaces is defined
     - network_vlan_interfaces | length() > 0
-
-
-# Restart Network Interfaces (deconfigurate & reconfigurate interfaces)
-- include: restartscript.yml
-  when: network_allow_service_restart and ansible_os_family == 'Debian'

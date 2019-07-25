@@ -1,16 +1,14 @@
 ---
-- name: Create the network configuration file for bridge devices
+- name: "create bridge configuration"
   template:
     src: "bridge/bridge_{{ ansible_os_family | lower() }}.j2"
     dest: "{{ interfaces_config_path }}/ifcfg-{{ item.device }}"
   loop: "{{ network_bridge_interfaces }}"
-  register: bridge_result
 
-- name: Create the network configuration file for port on the bridge devices
+- name: "create bridge ports configuration"
   template:
     src: "bridge/bridge_port_{{ ansible_os_family | lower() }}.j2"
     dest: "{{ interfaces_config_path }}/ifcfg-{{ item.1 }}"
   with_subelements:
     - "{{ network_bridge_interfaces }}"
     - bridge_ports
-  register: bridge_port_result
